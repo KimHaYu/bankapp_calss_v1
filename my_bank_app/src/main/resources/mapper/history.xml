@@ -5,15 +5,26 @@
 <!-- 반드시 세미콜론 생략 -->
 <mapper
 	namespace="com.tenco.bankapp.repository.interfaces.HistoryRepository">
-	<insert id="insert">
-		insert into account_tb(amount, wAccountId,
-		dAccountId, wBalance, dBalance, created_at)
-		values(#{amount},
-		#{w_account_id}, #{d_account_id}, #{w_balance}, #{d_balance}, now())
+	<insert id="insert" parameterType="com.tenco.bankapp.repository.entity.History">
+		insert into history_tb(amount, w_balance, d_balance, w_account_id, d_account_id)
+		values(#{amount}, #{wBalance}, #{dBalance}, #{wAccountId}, #{dAccountId})
 	</insert>
-	<select id="findByAccountNumber"
-		resultType="com.tenco.bankapp.repository.entity.History">
-		select * from history_tb where acoount_id 
-	</select>
+	<delete id="deleteById" parameterType="int">
+		delete from history_tb where id =#{id}
+		
+	</delete>
+	<update id="updateById">
+	update history_tb
+	set amount = #{amount},
+	w_balance = #{wBalabce},
+	d_balance = #{dBalance}
+	where id = #{id}
+	</update>
 
+    <select id="findAll" resultType ="com.tenco.bankapp.repository.entity.History">
+    select * from history_tb where id = #{id}
+    </select>
+    
+    <!-- 동적 쿼리 생성 예정 -->
+    
 </mapper>

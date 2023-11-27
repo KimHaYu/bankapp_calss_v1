@@ -5,7 +5,7 @@ create table user_tb(
  fullname varchar(50) not null, 
  created_at timestamp not null default now()
 );
-
+desc user_tb;
 
 -- 계좌 정보 테이블 
 create table account_tb(
@@ -16,7 +16,7 @@ create table account_tb(
  created_at timestamp not null default now(), 
  user_id int 
 );
-
+desc account_tb;
 
 create table history_tb(
  id int auto_increment primary key comment '거래내역 ID',
@@ -27,3 +27,4 @@ create table history_tb(
  d_balance bigint comment '입금 요청 후 계좌 잔액',
  created_at timestamp not null default now()
 );
+desc history_tb;

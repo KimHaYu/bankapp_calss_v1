@@ -21,6 +21,9 @@
 	<select id="findById" resultType="com.tenco.bankapp.repository.entity.Account">
 		select * from account_tb where id = #{id}
 	</select>
+	<select id="findByNumber" resultType="com.tenco.bankapp.repository.entity.Account">
+		select * from account_tb where number = #{number}
+	</select>
 	
 	<select id="findByUserId" resultType="com.tenco.bankapp.repository.entity.Account">
 		select * from account_tb where user_id = #{principalId}

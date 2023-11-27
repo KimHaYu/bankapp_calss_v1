@@ -115,6 +115,6 @@ public class AccountController {
 					throw new CustomRestfullException("비밀번호를 입력하시오", HttpStatus.BAD_REQUEST);
 				}
 				accountService.updateAccountWithdraw(dto, principal.getId());
-				return "redirect:/accunt/list";
+				return "redirect:/account/list";
 	}
 }
