@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 반드시 세미콜론 생략 -->
+<mapper
+	namespace="com.tenco.bankapp.repository.interfaces.HistoryRepository">
+	<insert id="insert">
+		insert into account_tb(amount, wAccountId,
+		dAccountId, wBalance, dBalance, created_at)
+		values(#{amount},
+		#{w_account_id}, #{d_account_id}, #{w_balance}, #{d_balance}, now())
+	</insert>
+	<select id="findByAccountNumber"
+		resultType="com.tenco.bankapp.repository.entity.History">
+		select * from history_tb where acoount_id 
+	</select>
+
+</mapper>
