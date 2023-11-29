@@ -1,6 +1,8 @@
 package com.tenco.bankapp.controller;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -66,21 +68,25 @@ public class RestHomeContoller {
 		headers.add("Content-type", "application/json; charset=UTF-8");
 		
 		// 바디 구성
-		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-		params.add("title", "블로그 포스트 1");
-		params.add("body", "후미진 어느 언덕에서 도시락 소풍");
-		params.add("userId", "1");
+		// MultiValueMap<K, V> = {"title" : "[블로그 포스트1]"} 
+		// {"title" : "블로그 포스트1"}
+		Map<String, String> params = new HashMap<>();
+		params.put("title", "블로그 포스트 1");
+		params.put("body", "후미진 어느 언덕에서 도시락 소풍");
+		params.put("userId", "1");
 		
 		// 헤더와 바디 결합 
-		HttpEntity<MultiValueMap<String, String>> requestMessage 
+		HttpEntity<Map<String, String>> requestMessage 
 			= new HttpEntity<>(params, headers);
+
 		
 		// HTTP 요청 처리 
-		ResponseEntity<String> response 
+		// 파싱 처리 해야 한다. 
+		ResponseEntity<BoardDto> response 
 				=  restTemplate.exchange(uri, HttpMethod.POST, requestMessage, 
-												String.class);
-		// http://localhost:80/exchange-test
-		System.out.println("headers " + response.getHeaders());
+												BoardDto.class);
+		BoardDto boardDto = response.getBody();
+		System.out.println("TEST : BDTO " + boardDto.toString());
 		return ResponseEntity.status(HttpStatus.OK).body(response.getBody());
 	}
 }
