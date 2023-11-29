@@ -23,4 +23,6 @@ public interface UserRepository {
 	
 	// 사용자 이름과 비밀번호 조회
 	public User findUserByUsernameAndPassword(SignUpFormDto dto);
+	// 사용자에 이름만 조회
+	public User findByUsername(SignUpFormDto dto);
 }
